@@ -6,9 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class Login {
+public class DesafioLoginCompra {
 
     WebDriver driver;
 
@@ -28,23 +26,29 @@ public class Login {
     By username = By.xpath("//input[@id='user-name']");
     By password = By.xpath("//input[@id='password']");
     By btLogin = By.xpath("//input[@id='login-button']");
-    By errorMessage = By.xpath("//button[@class='error-button']");
+    By btAddCart = By.xpath("//button[@id='add-to-cart-sauce-labs-backpack']");
+    By btCart = By.xpath("//a[@class='shopping_cart_link']");
+    By btCheckout = By.xpath("//button[@id='checkout']");
+    By firstName = By.xpath("//input[@id='first-name']");
+    By lastName = By.xpath("//input[@id='last-name']");
+    By cep = By.xpath("//input[@id='postal-code']");
+    By btContinue = By.xpath("//input[@id='continue']");
+    By btFinish = By.xpath("//button[@id='finish']");
+
 
     @Test
-    public void loginSucess (){
+    public void comprarProduto (){
         driver.findElement(username).sendKeys("standard_user");
         driver.findElement(password).sendKeys("secret_sauce");
         driver.findElement(btLogin).click();
-    }
 
-    @Test
-    public void lockedUser (){
-        driver.findElement(username).sendKeys("locked_out_user");
-        driver.findElement(password).sendKeys("secret_sauce");
-        driver.findElement(btLogin).click();
-        /* String errorMessage = "Epic sadface: Sorry, this user has been locked out.";
-        String actualMessage = driver.findElement(By.id(errorMessage)).getText();
-        precisa colocar webdriver wait
-        assertEquals(errorMessage, actualMessage); */
+        driver.findElement(btAddCart).click();
+        driver.findElement(btCart).click();
+        driver.findElement(btCheckout).click();
+        driver.findElement(firstName).sendKeys("João");
+        driver.findElement(lastName).sendKeys("Silva");
+        driver.findElement(cep).sendKeys("01120000");
+        driver.findElement(btContinue).click();
+        driver.findElement(btFinish).click();
     }
 }
